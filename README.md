@@ -1,6 +1,6 @@
 # snail_eater_game
-
 // SNAIL EATER
+
     // Player is 'x'
     // Avoid the ghosts (G) and eat the snails (@)
     // Ghosts will move towards player.
