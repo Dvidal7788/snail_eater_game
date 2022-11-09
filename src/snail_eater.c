@@ -1,4 +1,3 @@
-// 10.31.22 backup of snail_eater before dividing up files
 // SNAIL EATER
     // Player is 'x'
     // Avoid the ghosts (G) and eat the snails (@)
