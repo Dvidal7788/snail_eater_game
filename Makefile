@@ -19,7 +19,7 @@ $(BIN):$(OBJS)
 # make $(BIN)
 
 run:
-	./$(BIN)
+	@./$(BIN)
 clean:
 	rm -rf $(BIN)
 	rm -rf *.o $(OBJ)/*
