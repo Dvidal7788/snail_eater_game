@@ -37,16 +37,19 @@ typedef struct coordinates
 coordinates;
 
 // Function Prototypes
-void reset_board();
+void reset_board(void);
 void print_board(uint16_t level);
-void spawn_player();
+void spawn_player(void);
 void spawn_blocks(uint16_t  n);
 void spawn_snails(uint16_t n);
 void spawn_ghosts(uint16_t  n, coordinates ghost_pos[]);
-char player_move();
+char *inf_buffer(char *prompt);
+char player_move(void);
 char ghost_move(uint16_t ghost_num, coordinates ghost_pos[]);
-void if_error(uint8_t n, char *msg);
+void if_error(uint8_t n);
 void start_screen(void);
 void print_ascii_art(char c, uint64_t time);
+void check_high_score(int16_t current_score);
+void record_score(uint64_t highscore, FILE *ptr);
 
 #endif /* HEADER_H */

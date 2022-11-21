@@ -1,4 +1,4 @@
-#include "header.h"
+#include <header.h>
 
 //          ~~~~~~~~~~~~~~~~~~~~
 //          FUNCTION DEFINITIONS
@@ -6,7 +6,7 @@
 
 
 //      ------- RESET BOARD --------
-void reset_board()
+void reset_board(void)
 {
     for (uint16_t i = 0; i < HEIGHT; i++)
     {
@@ -40,7 +40,7 @@ void print_board(uint16_t level)
 }
 
 //       ------- SPAWN PLAYER --------
-void spawn_player()
+void spawn_player(void)
 {
     // If 1st to spawn, don't have to check for anything I think, we'll see...
     srand(time(0));
@@ -74,6 +74,7 @@ void spawn_blocks(uint16_t n)
     }
     return;
 }
+
 //      ------- SPAWN SNAILS --------
 void spawn_snails(uint16_t n)
 {
@@ -118,21 +119,21 @@ void spawn_ghosts(uint16_t n, coordinates ghost_pos[])
     }
 }
 
-//      ------- PLAYER MOVE --------
-char player_move()
+//      ------- INFINITE BUFFER -------
+char *inf_buffer(char *prompt)
 {
-    printf("Enter:\n");
+    printf("%s", prompt);
 
     // Scan until \n
     char *s = malloc(sizeof(char));
-    if (s == NULL) {if_error(1, "Failure while allocating memory for buffer to scan user input into.");}
+    if (s == NULL) {if_error(1);}
 
     // Scan char by char
     uint8_t i = 0;
     while (true)
     {
         int8_t scan_return = scanf("%c", &s[i]);
-        if (scan_return != 1) {if_error(2, "Failure while scanning user input.");}
+        if (scan_return != 1) {if_error(2);}
 
         if (s[i] == '\n') {
             s[i] = '\0';
@@ -140,10 +141,18 @@ char player_move()
         }
         else {
             s = realloc(s, sizeof(char)*(i+2));
-            if (s == NULL) {if_error(3, "Failure while re-allocating memory to buffer for scanning user input.");}
+            if (s == NULL) {if_error(3);}
             i++;
         }
     }
+
+    return s;
+}
+
+//      ------- PLAYER MOVE --------
+char player_move(void)
+{
+    char *s = inf_buffer("Enter:\n");
 
     if (tolower(s[0]) == 'w')
     {
@@ -395,13 +404,59 @@ char ghost_move(uint16_t ghost_num, coordinates ghost_pos[])
     }
     else return ' ';
 }
+
 //      ------- IF_ERROR() -------
-void if_error(uint8_t n, char *msg)
+void if_error(uint8_t error_num)
 {
-    // Open csv file
-    FILE *log_file = fopen("error_log.csv", "a");
+    //      -- READ FROM ERROR KEY --
+
+    // Key Path
+    const char *keyPath = "src/resources/errorKey.txt";
+    // Read from Error KEY:
+    FILE *key_file = fopen(keyPath, "r");
+    if (key_file == NULL) {
+        printf("\n** ERROR: Failure opening %s\n\n", keyPath);
+        exit(-2);
+    }
+
+    // Allocate buffer
+    char *msg = malloc(sizeof(char));
+    if (msg == NULL) exit(-3);
+
+    // Find Error Number & corresponding Error Message
+    int8_t c_ret = 0;
+    while ((c_ret = fgetc(key_file)-48) != error_num) {if (c_ret == EOF) exit(-5);}
+    while ((c_ret = fgetc(key_file)) != '\n') {if (c_ret == EOF) exit(-5);}
+
+    // Iterate until end of message ('\n'), reallocing along the way
+    uint16_t i = 0;
+    while (true) {
+
+        // Scan char
+        msg[i] = fgetc(key_file);
+        if (msg[i] == EOF) {exit(-5);}
+
+        // Check for '\n'
+        if (msg[i] == '\n') {
+            msg[i] = '\0';
+            break;
+        }
+        else {
+            msg = realloc(msg, sizeof(char)*(i+2));
+            if (msg == NULL) {exit(-4);}
+            i++;
+        }
+    }
+
+    //     --- WRITE TO ERROR LOG ---
+
+    // Log Path
+    const char *logPath = "src/resources/error_log.csv";
+
+    // OPEN FILE: (Append Mode)
+    FILE *log_file = fopen(logPath, "a");
     if (log_file == NULL) {
-        printf("\n** ERROR: Failure opening error_log.csvn\n\n");
+        printf("\n** ERROR: Failure opening %s\n\n", logPath);
         exit(-1);
     }
 
@@ -412,15 +467,17 @@ void if_error(uint8_t n, char *msg)
     char *timestamp = ctime(&t);
     timestamp[l-1] = '\0';
 
-    // Print to csv
-    fprintf(log_file, "%i, %s, %s\n", n, msg, timestamp);
+    // Print to Log csv
+    fprintf(log_file, "%i, %s, %s\n", error_num, msg, timestamp);
 
     // Close file, handle dangling pointers, exit program
     fclose(log_file);
-    log_file = NULL;
+    fclose(key_file);
+    log_file = key_file = NULL;
     msg = timestamp = NULL;
-    exit(n);
+    exit(error_num);
 }
+
 //      ----- START_SCREEN() ------
 void start_screen(void)
 {
@@ -473,6 +530,7 @@ void start_screen(void)
     usleep(800000);
     return;
 }
+
 //      ---- PRINT_ASCII_ART() -----
 void print_ascii_art(char c, uint64_t time)
 {
@@ -528,5 +586,71 @@ void print_ascii_art(char c, uint64_t time)
         for (uint8_t i = 0; i < strlen(s5); i++) {printf("%c", s5[i]); usleep(18000);}
         usleep(time);
     }
+    return;
+}
+void check_high_score(int16_t current_score)
+{
+    // Path
+    const char *highscorePath = "src/resources/high_scores.csv";
+
+    // Open File to Read
+    FILE *highscore_file = fopen(highscorePath, "r+");
+    if (highscore_file == NULL) {if_error(4);}
+
+    uint64_t i = 0;
+    char *fgetc_ret = malloc(sizeof(char));
+    if (fgetc_ret == NULL){ if_error(6);}
+
+
+    // Skip csv header (1st line)
+    while ((fgetc_ret[0] = fgetc(highscore_file)) != '\n');
+
+    // Next column (High Scores)
+    while ((fgetc_ret[0] = fgetc(highscore_file)) != ',');
+
+    // RECORD NEW SCORE (If blank or new score is higher):
+    while ((fgetc_ret[i] = fgetc(highscore_file)) != ',') i++;
+    fgetc_ret[i] = '\0';
+
+
+    printf("%s\n%li\n", fgetc_ret, strlen(fgetc_ret));
+    current_score++;
+    // if (strcmp(fgetc_ret, "BLANK") == 0) {
+    //     fseek(highscore_file, -6, SEEK_CUR);
+    //     record_score(current_score, highscore_file);
+    // }
+    // else if (current_score > atoi(fgetc_ret)) {
+    //     uint16_t l = 0;
+    //     while (fgetc(highscore_file) != '\n') l++;
+    //     fseek(highscore_file, l+1, SEEK_CUR);
+    //     record_score(current_score, highscore_file);
+    // }
+
+
+    fclose(highscore_file);
+    highscore_file = NULL;
+    free(fgetc_ret);
+    fgetc_ret = NULL;
+    return;
+
+}
+void record_score(uint64_t highscore, FILE *ptr)
+{
+    // User Enter Name
+    char *name = inf_buffer("\nCongrats! YOU SET A NEW HIGH SCORE!!!\nENTER YOUR NAME: ");
+
+    // TIME
+    time_t t;
+    time(&t);
+    uint8_t l = strlen(ctime(&t));
+    char *timestamp = ctime(&t);
+    timestamp[l-1] = '\0';
+
+    // Log New Score
+    int print_return = fprintf(ptr, "%ld,%s,%s", highscore, name, timestamp);
+    printf("fprintf RETURN: %i\n\n", print_return);
+
+    free(name);
+    name = NULL;
     return;
 }

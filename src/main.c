@@ -9,7 +9,7 @@
     // 10.31.22: When I compile using gcc or clang, it will not print chars 1 by 1 in my for loop in the start_screen(). It doesn't stop to sleep in every iteration of the loop.
             // Only make will compile it the way I want. I don't understand why.
 
-#include "header.h"
+#include <header.h>
 
 // Define Extern Globals (declared in header.h)
 const char BLANK = '-';
@@ -65,6 +65,7 @@ int main(void)
         if (result == 'q')
         {
             printf("\n\n\t You QUIT. Good seein' ya!!\n\n");
+            // check_high_score(level-1);
             break;
         }
         else if (snail_count == 0)

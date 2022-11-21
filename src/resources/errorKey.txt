@@ -1,0 +1,25 @@
+*** DO NOT ALTER THIS FILE ***
+- Altering this file will result in inaccurate logging of errors
+
+ERROR KEY:
+1:
+Failure while allocating buffer for user input
+2:
+Failure while scanning user input
+3:
+Failure while re-allocating memory to buffer for scanning user input
+4:
+Failure while opening high score log file
+5:
+fgetc() returned EOF while reading high_scores.csv
+6:
+Failure while allocating buffer to read high_scores.csv
+
+
+----------
+THESE ERRORS ONLY HAPPEN INSIDE OF if_error(). We can not recursively call if_error, so negative values will be returned from main to differentiate.
+-1: Failure while opening error_log.csv
+-2: Failure while opening error_key.txt
+-3: Failure while allocating buffer to read errorKey.txt
+-4: Failure while re-allocating buffer to read errorKey.txt
+-5: fgetc() returned EOF while reading errorKey.txt
