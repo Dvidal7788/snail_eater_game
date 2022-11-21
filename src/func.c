@@ -588,69 +588,74 @@ void print_ascii_art(char c, uint64_t time)
     }
     return;
 }
-void check_high_score(int16_t current_score)
-{
-    // Path
-    const char *highscorePath = "src/resources/high_scores.csv";
 
-    // Open File to Read
-    FILE *highscore_file = fopen(highscorePath, "r+");
-    if (highscore_file == NULL) {if_error(4);}
+// // DOES NOT WORK YET: 
+// //      ____ CHECK HIGH SCORE ____
+// void check_high_score(int16_t current_score)
+// {
+//     // Path
+//     const char *highscorePath = "src/resources/high_scores.csv";
 
-    uint64_t i = 0;
-    char *fgetc_ret = malloc(sizeof(char));
-    if (fgetc_ret == NULL){ if_error(6);}
+//     // Open File to Read
+//     FILE *highscore_file = fopen(highscorePath, "r+");
+//     if (highscore_file == NULL) {if_error(4);}
 
-
-    // Skip csv header (1st line)
-    while ((fgetc_ret[0] = fgetc(highscore_file)) != '\n');
-
-    // Next column (High Scores)
-    while ((fgetc_ret[0] = fgetc(highscore_file)) != ',');
-
-    // RECORD NEW SCORE (If blank or new score is higher):
-    while ((fgetc_ret[i] = fgetc(highscore_file)) != ',') i++;
-    fgetc_ret[i] = '\0';
+//     uint64_t i = 0;
+//     char *fgetc_ret = malloc(sizeof(char));
+//     if (fgetc_ret == NULL){ if_error(6);}
 
 
-    printf("%s\n%li\n", fgetc_ret, strlen(fgetc_ret));
-    current_score++;
-    // if (strcmp(fgetc_ret, "BLANK") == 0) {
-    //     fseek(highscore_file, -6, SEEK_CUR);
-    //     record_score(current_score, highscore_file);
-    // }
-    // else if (current_score > atoi(fgetc_ret)) {
-    //     uint16_t l = 0;
-    //     while (fgetc(highscore_file) != '\n') l++;
-    //     fseek(highscore_file, l+1, SEEK_CUR);
-    //     record_score(current_score, highscore_file);
-    // }
+//     // Skip csv header (1st line)
+//     while ((fgetc_ret[0] = fgetc(highscore_file)) != '\n');
+
+//     // Next column (High Scores)
+//     while ((fgetc_ret[0] = fgetc(highscore_file)) != ',');
+
+//     // RECORD NEW SCORE (If blank or new score is higher):
+//     while ((fgetc_ret[i] = fgetc(highscore_file)) != ',') i++;
+//     fgetc_ret[i] = '\0';
 
 
-    fclose(highscore_file);
-    highscore_file = NULL;
-    free(fgetc_ret);
-    fgetc_ret = NULL;
-    return;
+//     printf("%s\n%li\n", fgetc_ret, strlen(fgetc_ret));
+//     current_score++;
+//     // if (strcmp(fgetc_ret, "BLANK") == 0) {
+//     //     fseek(highscore_file, -6, SEEK_CUR);
+//     //     record_score(current_score, highscore_file);
+//     // }
+//     // else if (current_score > atoi(fgetc_ret)) {
+//     //     uint16_t l = 0;
+//     //     while (fgetc(highscore_file) != '\n') l++;
+//     //     fseek(highscore_file, l+1, SEEK_CUR);
+//     //     record_score(current_score, highscore_file);
+//     // }
 
-}
-void record_score(uint64_t highscore, FILE *ptr)
-{
-    // User Enter Name
-    char *name = inf_buffer("\nCongrats! YOU SET A NEW HIGH SCORE!!!\nENTER YOUR NAME: ");
 
-    // TIME
-    time_t t;
-    time(&t);
-    uint8_t l = strlen(ctime(&t));
-    char *timestamp = ctime(&t);
-    timestamp[l-1] = '\0';
+//     fclose(highscore_file);
+//     highscore_file = NULL;
+//     free(fgetc_ret);
+//     fgetc_ret = NULL;
+//     return;
 
-    // Log New Score
-    int print_return = fprintf(ptr, "%ld,%s,%s", highscore, name, timestamp);
-    printf("fprintf RETURN: %i\n\n", print_return);
+// }
 
-    free(name);
-    name = NULL;
-    return;
-}
+// //      ____ RECORD NEW SCORE ____
+// void record_score(uint64_t highscore, FILE *ptr)
+// {
+//     // User Enter Name
+//     char *name = inf_buffer("\nCongrats! YOU SET A NEW HIGH SCORE!!!\nENTER YOUR NAME: ");
+
+//     // TIME
+//     time_t t;
+//     time(&t);
+//     uint8_t l = strlen(ctime(&t));
+//     char *timestamp = ctime(&t);
+//     timestamp[l-1] = '\0';
+
+//     // Log New Score
+//     int print_return = fprintf(ptr, "%ld,%s,%s", highscore, name, timestamp);
+//     printf("fprintf RETURN: %i\n\n", print_return);
+
+//     free(name);
+//     name = NULL;
+//     return;
+// }
