@@ -63,29 +63,35 @@ void if_error(int16_t error_num)
 <ul>
   <li>- PARAMETERS: Takes integer (i.e. error code) as input.  </li>
   <ol>
-    <li>- Opens file errorKey.txt (which contains all of the potential error codes), scans the error key file for the appropriate corresponding error message.</li>
-    <li>- Reads error message into dynamically allocated buffer (for ultimate modularity and ability for expansion moving forward)</li>
-    <li>- Creates timestamp</li>
-    <li>- Opens errorlog.csv, prints error code, error message and timestamp to error log</li>
-    <li>- Prints error code/error message to the terminal</li>
-    <li>- Exits program, returning correct error message from main().</li>
-    <li>- Note: The 1st iteration of this function took an error message as an input, however, when creating a program in C and trying to make it as robust as possible, of course there are many NULL checks and error checks throughout the program, each of which has an if statement that calls this if_error() function, if triggered. Since each of those calls to if_error() initially took an error message string as input, this began to quickly make the code look very messy. So, for ultimate modularity, ease of use and maintenance moving forward (in addition to cleaning up messy code in the calling function), this function was redesigned to read the corresponding error message from an error key).</li>
+    <li> Opens file errorKey.txt (which contains all of the potential error codes), scans the error key file for the appropriate corresponding error message.</li>
+    <li> Reads error message into dynamically allocated buffer (for ultimate modularity and ability for expansion moving forward)</li>
+    <li> Creates timestamp</li>
+    <li> Opens errorlog.csv, prints error code, error message and timestamp to error log</li>
+    <li> Prints error code/error message to the terminal</li>
+    <li> Exits program, returning correct error message from main().</li>
+    <li> Note: The 1st iteration of this function took an error message as an input, however, when creating a program in C and trying to make it as robust as possible, of course there are many NULL checks and error checks throughout the program, each of which has an if statement that calls this if_error() function, if triggered. Since each of those calls to if_error() initially took an error message string as input, this began to quickly make the code look very messy. So, for ultimate modularity, ease of use and maintenance moving forward (in addition to cleaning up messy code in the calling function), this function was redesigned to read the corresponding error message from an error key).</li>
    </ol>
-  <li>- RETURN: No return. Exits program before returning.</li>
+  <li>- RETURN: No return value. Exits program before returning.</li>
 </ul>
 
 ___ RESET_BOARD() ___
 <br>
 void reset_board(void)
 <ul>
-  <li>- 1. Uses nested loop to go through each space in the board[][] char 2D array, setting each char to '-' (using the macro BLANK)</li>
+  <li> PARAMETERS: No input
+  <ol>
+    <li> 1. Uses nested loop to go through each space in the board[][] char 2D array, setting each char to '-' (using the macro BLANK)</li>
+  </ol>
+  <li> RETRUN: No return value.
 </ul>
 ___ PRINT_BOARD() ___
 <br>
 void print_board(uint16_t level)
 <ul>
   <li>- PARAMETERS: takes integer as input to display the current level at the top of the screen</li>
-  <li>-1. Uses nested loop to print each char in the 2D char array baord[][], using the macros HEIGHT and WIDTH to easily be able to change the board size.</li>
+  <ol>
+  <li> Uses nested loop to print each char in the 2D char array baord[][], using the macros HEIGHT and WIDTH to easily be able to change the board size.</li>
+  </ol>
 </ul>
 
 
