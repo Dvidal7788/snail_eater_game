@@ -51,8 +51,8 @@ char *inf_buffer(char *prompt)
 <ul>
 <li>- PARAMETERS: Takes string as input.</li>
   <ol>
-    <li>- 1. Prompts user with string given as input.</li>
-    <li>- 2. Mallocs initial char. Reallocs one char at a time until '\n' is reached, at which point that char will be changed to '\0'.</li>
+    <li>- Prompts user with string given as input.</li>
+    <li>- Mallocs initial char. Reallocs one char at a time until '\n' is reached, at which point that char will be changed to '\0'.</li>
   </ol>
 <li>- RETURN: Will return dynamically allocated string. It is up to the programmer to free this string in the calling function.</li>
 </ul>
