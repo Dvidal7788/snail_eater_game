@@ -44,24 +44,11 @@ BLOCKS: '##' <br>
 GO!: 
 
 <h3>LIST OF FUNCTIONS:</h3>
-
-___ INF_BUFFER() ____
-<br>
-char *inf_buffer(char *prompt)
-<ul>
-<li>- PARAMETERS: Takes string as input.</li>
-  <ol>
-    <li>- Prompts user with string given as input.</li>
-    <li>- Mallocs initial char. Reallocs one char at a time until '\n' is reached, at which point that char will be changed to '\0'.</li>
-  </ol>
-<li>- RETURN: Will return dynamically allocated string. It is up to the programmer to free this string in the calling function.</li>
-</ul>
-
 ___ IF_ERROR() ___
 <br>
 void if_error(int16_t error_num)
 <ul>
-  <li>- PARAMETERS: Takes integer (i.e. error code) as input.  </li>
+  <li> PARAMETERS: Takes integer (i.e. error code) as input.  </li>
   <ol>
     <li> Opens file errorKey.txt (which contains all of the potential error codes), scans the error key file for the appropriate corresponding error message.</li>
     <li> Reads error message into dynamically allocated buffer (for ultimate modularity and ability for expansion moving forward)</li>
@@ -71,7 +58,7 @@ void if_error(int16_t error_num)
     <li> Exits program, returning correct error message from main().</li>
     <li> Note: The 1st iteration of this function took an error message as an input, however, when creating a program in C and trying to make it as robust as possible, of course there are many NULL checks and error checks throughout the program, each of which has an if statement that calls this if_error() function, if triggered. Since each of those calls to if_error() initially took an error message string as input, this began to quickly make the code look very messy. So, for ultimate modularity, ease of use and maintenance moving forward (in addition to cleaning up messy code in the calling function), this function was redesigned to read the corresponding error message from an error key).</li>
    </ol>
-  <li>- RETURN: No return value. Exits program before returning.</li>
+  <li> RETURN: No return value. Exits program before returning.</li>
 </ul>
 
 ___ RESET_BOARD() ___
@@ -134,16 +121,29 @@ void spawn_ghosts(uint16_t n, coordinates ghost_pos[])
   <li>PARAMETERS: Takes unsigned integer and array of coordinates struct as input</li>
   <ol>
     <li>Uses random number generator/modulo operator to find random spot for snails to appear on the board, and checks that space is empty.</li>
-    <li></li>
+    <li>Keeps track of ghost positions using array of coordinates (which is a struct I declared in the header file, consisting of 2 integers).</li>
   </ol>
-  <li>RETURN:</li>
+  <li>RETURN: No return value</li>
 </ul>
 
-
+___ INF_BUFFER() ____
+<br>
+char *inf_buffer(char *prompt)
 <ul>
-  <li>PARAMETERS: </li>
+<li> PARAMETERS: Takes string as input.</li>
   <ol>
-    <li></li>
+    <li>- Prompts user with string given as input.</li>
+    <li>- Mallocs initial char. Reallocs one char at a time until '\n' is reached, at which point that char will be changed to '\0'.</li>
+  </ol>
+<li> RETURN: Will return dynamically allocated string. It is up to the programmer to free this string in the calling function.</li>
+</ul>
+
+___ PLAYER_MOVE() ___<br>
+char player_move(void)
+<ul>
+  <li>PARAMETERS: Takes no input.</li>
+  <ol>
+    <li>Uses inf_buffer() to ask user for input</li>
   </ol>
   <li>RETURN:</li>
 </ul>
