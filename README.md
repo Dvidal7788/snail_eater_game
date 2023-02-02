@@ -119,7 +119,7 @@ void spawn_blocks(uint16_t n)
   <li>RETURN: No return value.</li>
 </ul>
 d
-___SPAWN GHOSTS()___
+___ __SPAWN GHOSTS()___
 <ul>
   <li>PARAMETERS: Takes unsigned integer as input, determing how many snails to spawn.</li>
   <ol>
