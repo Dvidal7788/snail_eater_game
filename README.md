@@ -6,7 +6,7 @@ SNAILS: '@' <br>
 GHOSTS: 'G' <br>
 BLOCKS: '##' <br>
 
-<h2>Basic Gameplay:</>
+<h3>Basic Gameplay:</h3>
 <ul>
 <li>Player is 'x'. <br> </li>
 <li>Use w,s,a,d to move up, down, left, right respectively. <br></li>
@@ -25,7 +25,7 @@ BLOCKS: '##' <br>
 <li>Type 'quit' anytime to quit! Otherwise, keep playing indefinitely; there are no lives lost for dying, you simply repeat the level!</li>
 </ul>
 
-LIST OF FUNCTIONS:
+<h3>LIST OF FUNCTIONS:</h3>
 
 ___ INF_BUFFER() ____
 <br>
