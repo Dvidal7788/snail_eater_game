@@ -25,6 +25,24 @@ BLOCKS: '##' <br>
 <li>Type 'quit' anytime to quit! Otherwise, keep playing indefinitely; there are no lives lost for dying, you simply repeat the level!</li>
 </ul>
 
+<h3>GAMEBOARD:</h3>
+                             ~~~ SNAIL EATER ~~~
+
+                   - Level 1 -
+
+
+                - - - - - # # - @ 
+                - @ - - - - - - - 
+                - - - - x - - - - 
+                # # - - - - - G - 
+                - - - - - - - - - 
+                - - # # - - - - - 
+                - - - - - - @ - - 
+                - G - - - - - - - 
+                - - - - - - G - - 
+
+GO!: 
+
 <h3>LIST OF FUNCTIONS:</h3>
 
 ___ INF_BUFFER() ____
@@ -49,21 +67,3 @@ void if_error(int16_t error_num)
 - 6. Exits program, returning correct error message from main().
 - Note: The 1st iteration of this function took an error message as an input, however, when creating a program in C and trying to make it as robust as possible, of course there are many NULL checks and error checks throughout the program, each of which has an if statement that calls this if_error() function, if triggered. Since each of those calls to if_error() initially took an error message string as input, this began to quickly make the code look very messy. So, for ultimate modularity, ease of use and maintenance moving forward (in addition to cleaning up messy code in the calling function), this function was redesigned to read the corresponding error message from an error key).
 - RETURN: No return. Exits program before returning.
-
-<h3>GAMEBOARD:</h3>
-                             ~~~ SNAIL EATER ~~~
-
-                   - Level 1 -
-
-
-                - - - - - # # - @ 
-                - @ - - - - - - - 
-                - - - - x - - - - 
-                # # - - - - - G - 
-                - - - - - - - - - 
-                - - # # - - - - - 
-                - - - - - - @ - - 
-                - G - - - - - - - 
-                - - - - - - G - - 
-
-GO!: 
