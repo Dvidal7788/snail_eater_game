@@ -22,13 +22,20 @@ int p_x, p_y, snail_count;
 
 int main(void)
 {
-    // ~~~~~ ~~~~~ ~~~~~ ~~~~~ BEGIN GAME ~~~~~ ~~~~~ ~~~~~ ~~~~~
-    start_screen();
+
+    // ~~~~~ SET UP ~~~~~
 
     // Set Level 1 snail_count and ghost_num (snail_count is global)
-    uint16_t starting_amt = 3;
+    uint16_t starting_amt = 1;
     snail_count = starting_amt;
     uint16_t ghost_num = starting_amt, level = 1;
+
+    char *difficulty = choose_difficulty();
+
+    start_screen();
+    countdown(level);
+
+    // ~~~~~ ~~~~~ ~~~~~ ~~~~~ BEGIN GAME ~~~~~ ~~~~~ ~~~~~ ~~~~~
     while (true)
     {
         // Variables
@@ -38,7 +45,7 @@ int main(void)
         // Setup
         reset_board();
         spawn_player();
-        spawn_blocks(3);
+        spawn_blocks(level+2);
         spawn_ghosts(ghost_num, ghost_pos);
         spawn_snails(snail_count);
 
@@ -47,15 +54,27 @@ int main(void)
         {
             print_board(level);
 
+            // -- PLAYER MOVE --
             result = player_move();
-            if (snail_count == 0 || result == 'g' || result == 'q')
-            {
+
+            // Check if player ate all the snails, ran into ghost or quit
+            if (snail_count == 0 || result == 'g' || result == 'q') {
                 break;
             }
 
-            result = ghost_move(ghost_num, ghost_pos);
-            if (result == 'g')
-            {
+            // -- GHOST MOVE --
+            if (strcasecmp(difficulty, "easy") == 0) {
+                result = ghost_move_easy(ghost_num, ghost_pos);
+            }
+            else if (strcasecmp(difficulty, "hard") == 0) {
+                result = ghost_move_hard(ghost_num, ghost_pos);
+            }
+            else {
+                result = ghost_move_impossible(ghost_num, ghost_pos);
+            }
+
+            // Check if player eaten by ghost
+            if (result == 'g') {
                 break;
             }
         }
@@ -64,13 +83,13 @@ int main(void)
         print_board(0);
         if (result == 'q')
         {
-            printf("\n\n\t You QUIT. Good seein' ya!!\n\n");
+            printf("\n\n      Thanks for playing SNAIL EATER!!\n\n\t      ~~ GOODBYE!! ~~\n\n");
             // check_high_score(level-1);
             break;
         }
         else if (snail_count == 0)
         {
-            printf("\n\n\n\t   YOU PASSED LEVEL %i!!!\n\n\t      Next Level in:\n", level);
+            printf("\n\n\n\t   YOU PASSED LEVEL %i!!!\n\n", level);
             level++;
             snail_count = starting_amt + level-1;
             ghost_num = snail_count;
@@ -83,12 +102,26 @@ int main(void)
         }
 
         // COUNTDOWN
-        for (int8_t i = 3; i >=0; i--) {
-            if (i > 0) {printf("\n\n\t\t   ~ %i ~", i);}
-            else {printf("\n\n\t         ~  GO! ~");}
-            usleep(1250000);
-        }
+        countdown(level);
     }
 
-    return 0;
+    // HIGHEST SCORE/RECORD SCORE
+    uint16_t score = level-1;
+    uint16_t all_time = display_highest_scores(difficulty);
+
+    if (score > all_time) {
+        printf("\n~~~ CONGRATULATIONS! YOU BEAT THE ALL TIME HIGH SCORE OF %i!!! ~~~\n\n", all_time);
+    }
+    else if (score == all_time) {
+        printf("\n~~~ CONGRATULATIONS! YOU TIED THE ALL TIME HIGH SCORE OF %i!!! ~~~\n\n", all_time);
+    }
+
+    record_new_score(difficulty, score);
+
+    // END
+    free(difficulty);
+    difficulty = NULL;
+
+
+    return EXIT_SUCCESS;
 }

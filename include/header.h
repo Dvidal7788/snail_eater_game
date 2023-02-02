@@ -45,10 +45,16 @@ void spawn_snails(uint16_t n);
 void spawn_ghosts(uint16_t  n, coordinates ghost_pos[]);
 char *inf_buffer(char *prompt);
 char player_move(void);
-char ghost_move(uint16_t ghost_num, coordinates ghost_pos[]);
+char ghost_move_easy(uint16_t ghost_num, coordinates ghost_pos[]);
+char ghost_move_hard(uint16_t ghost_num, coordinates ghost_pos[]);
+char ghost_move_impossible(uint16_t ghost_num, coordinates ghost_pos[]);
 void if_error(uint8_t n);
 void start_screen(void);
+void countdown(uint16_t level);
 void print_ascii_art(char c, uint64_t time);
+char *choose_difficulty(void);
+uint16_t display_highest_scores(char *difficulty);
+void record_new_score(char *difficulty, uint16_t score);
 // void check_high_score(int16_t current_score);
 // void record_score(uint64_t highscore, FILE *ptr);
 

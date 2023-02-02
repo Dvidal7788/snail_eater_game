@@ -3,13 +3,13 @@
 
 ERROR KEY:
 1:
-Failure while allocating buffer for user input
+Malloc failure
 2:
 Failure while scanning user input
 3:
-Failure while re-allocating memory to buffer for scanning user input
+Re-alloc failure
 4:
-Failure while opening high score log file
+Failure while opening file
 5:
 fgetc() returned EOF while reading high_scores.csv
 6:

@@ -14,6 +14,7 @@ INCDIRS = . ./include
 
 DEPFLAGS = -MP -MD
 CFLAGS = -Wall -Wextra -g $(foreach D,$(INCDIRS),-I$(D)) $(DEPFLAGS)
+# CFLAGS = -Wall -Wextra -g -L./include -lcsv_reader.a $(foreach D,$(INCDIRS),-I$(D)) $(DEPFLAGS)
 
 CFILES = $(wildcard $(SRC)/*.c)
 OBJS = $(patsubst $(SRC)/%.c,$(OBJ)/%.o,$(CFILES))

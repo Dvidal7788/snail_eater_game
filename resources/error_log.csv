@@ -1,0 +1,16 @@
+ERROR CODE, MESSAGE, TIMESTAMP
+1, Failure while allocating buffer for user input, Mon Nov 21 18:17:51 2022
+1, Failure while allocating buffer for user input, Mon Nov 21 18:18:28 2022
+1, Failure while allocating buffer for user input, Mon Nov 21 18:19:54 2022
+4, Failure while opening file, Wed Feb  1 22:18:01 2023
+4, Failure while opening file, Wed Feb  1 22:18:17 2023
+4, Failure while opening file, Wed Feb  1 22:30:53 2023
+4, Failure while opening file, Wed Feb  1 22:31:08 2023
+4, Failure while opening file, Wed Feb  1 22:34:26 2023
+4, Failure while opening file, Wed Feb  1 22:36:03 2023
+4, Failure while opening file, Wed Feb  1 22:36:23 2023
+4, Failure while opening file, Wed Feb  1 22:36:37 2023
+4, Failure while opening file, Wed Feb  1 22:36:53 2023
+4, Failure while opening file, Wed Feb  1 22:37:11 2023
+4, Failure while opening file, Wed Feb  1 22:37:35 2023
+4, Failure while opening file, Wed Feb  1 22:37:45 2023
