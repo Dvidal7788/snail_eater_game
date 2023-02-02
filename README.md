@@ -63,12 +63,12 @@ void if_error(int16_t error_num)
 <ul>
   <li>- PARAMETERS: Takes integer (i.e. error code) as input.  </li>
   <ol>
-    <li>- 1. Opens file errorKey.txt (which contains all of the potential error codes), scans the error key file for the appropriate corresponding error message.</li>
-    <li>- 2. Reads error message into dynamically allocated buffer (for ultimate modularity and ability for expansion moving forward)</li>
-    <li>- 3. Creates timestamp</li>
-    <li>- 4. Opens errorlog.csv, prints error code, error message and timestamp to error log</li>
-    <li>- 5. Prints error code/error message to the terminal</li>
-    <li>- 6. Exits program, returning correct error message from main().</li>
+    <li>- Opens file errorKey.txt (which contains all of the potential error codes), scans the error key file for the appropriate corresponding error message.</li>
+    <li>- Reads error message into dynamically allocated buffer (for ultimate modularity and ability for expansion moving forward)</li>
+    <li>- Creates timestamp</li>
+    <li>- Opens errorlog.csv, prints error code, error message and timestamp to error log</li>
+    <li>- Prints error code/error message to the terminal</li>
+    <li>- Exits program, returning correct error message from main().</li>
     <li>- Note: The 1st iteration of this function took an error message as an input, however, when creating a program in C and trying to make it as robust as possible, of course there are many NULL checks and error checks throughout the program, each of which has an if statement that calls this if_error() function, if triggered. Since each of those calls to if_error() initially took an error message string as input, this began to quickly make the code look very messy. So, for ultimate modularity, ease of use and maintenance moving forward (in addition to cleaning up messy code in the calling function), this function was redesigned to read the corresponding error message from an error key).</li>
    </ol>
   <li>- RETURN: No return. Exits program before returning.</li>
