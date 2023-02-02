@@ -107,8 +107,7 @@ void spawn_player(void)
   <li>RETURN: No return value</li>
 </ul>
 
-___SPAWN_BLOCKS()___
-<br>
+___ SPAWN_BLOCKS()___ <br>
 void spawn_blocks(uint16_t n)
 <ul>
   <li>PARAMETERS: Takes unsigned integer as input, determing how many blocks to spawn.</li>
@@ -118,14 +117,26 @@ void spawn_blocks(uint16_t n)
   </ol>
   <li>RETURN: No return value.</li>
 </ul>
-d
-___ __SPAWN GHOSTS()___
+
+___ SPAWN SNAILS()___ <br>
+void spawn_ghosts(uint16_t n)
 <ul>
   <li>PARAMETERS: Takes unsigned integer as input, determing how many snails to spawn.</li>
   <ol>
     <li>Uses random number generator/modulo operator to find random spot for snails to appear on the board, and checks that space is empty.</li>
   </ol>
   <li>RETURN: No return value.</li>
+</ul>
+
+___ SPAWN GHOSTS() ___ <br>
+void spawn_ghosts(uint16_t n, coordinates ghost_pos[])
+<ul>
+  <li>PARAMETERS: Takes unsigned integer and array of coordinates struct as input</li>
+  <ol>
+    <li>Uses random number generator/modulo operator to find random spot for snails to appear on the board, and checks that space is empty.</li>
+    <li></li>
+  </ol>
+  <li>RETURN:</li>
 </ul>
 
 
@@ -136,3 +147,12 @@ ___ __SPAWN GHOSTS()___
   </ol>
   <li>RETURN:</li>
 </ul>
+
+<ul>
+  <li>PARAMETERS: </li>
+  <ol>
+    <li></li>
+  </ol>
+  <li>RETURN:</li>
+</ul>
+
