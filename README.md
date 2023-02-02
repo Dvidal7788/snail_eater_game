@@ -44,22 +44,6 @@ BLOCKS: '##' <br>
 GO!: 
 
 <h3>LIST OF FUNCTIONS:</h3>
-___ IF_ERROR() ___
-<br>
-void if_error(int16_t error_num)
-<ul>
-  <li> PARAMETERS: Takes integer (i.e. error code) as input.  </li>
-  <ol>
-    <li> Opens file errorKey.txt (which contains all of the potential error codes), scans the error key file for the appropriate corresponding error message.</li>
-    <li> Reads error message into dynamically allocated buffer (for ultimate modularity and ability for expansion moving forward)</li>
-    <li> Creates timestamp</li>
-    <li> Opens errorlog.csv, prints error code, error message and timestamp to error log</li>
-    <li> Prints error code/error message to the terminal</li>
-    <li> Exits program, returning correct error message from main().</li>
-    <li> Note: The 1st iteration of this function took an error message as an input, however, when creating a program in C and trying to make it as robust as possible, of course there are many NULL checks and error checks throughout the program, each of which has an if statement that calls this if_error() function, if triggered. Since each of those calls to if_error() initially took an error message string as input, this began to quickly make the code look very messy. So, for ultimate modularity, ease of use and maintenance moving forward (in addition to cleaning up messy code in the calling function), this function was redesigned to read the corresponding error message from an error key).</li>
-   </ol>
-  <li> RETURN: No return value. Exits program before returning.</li>
-</ul>
 
 ___ RESET_BOARD() ___
 <br>
@@ -138,15 +122,89 @@ char *inf_buffer(char *prompt)
 <li> RETURN: Will return dynamically allocated string. It is up to the programmer to free this string in the calling function.</li>
 </ul>
 
-___ PLAYER_MOVE() ___<br>
+___ PLAYER_MOVE() ___ <br>
 char player_move(void)
 <ul>
   <li>PARAMETERS: Takes no input.</li>
   <ol>
     <li>Uses inf_buffer() to ask user for input (i.e. w, s, a, d to move up, down, left, right)</li>
+    <li>Determines if player is at the boarder or not and checks if the direction the player wants to move is blocked by a block or if a ghost is there (taking into account that if the player is at the border, the other side of the board needs to be checked, since the player can wrap around the border)</li>
+    <li>If space is free, player moves to new space and player position is saved in macros p_x and p_y.</li>
+    <li>If space is occupied by a block, player does not move.</li>
+    <li>If space is occupied by a snail, player moves, new player position is remembered and snail_count macro is decremeneted by 1.</li>
+    <li>If space is occupied by ghost, player loses.</li>
+  </ol>
+  <li>RETURN: Return char letting calling function (i.e. main()) determing if player has ran into a ghost, decided to quit or nothing happened.</li>
+</ul>
+
+__ GHOST_MOVE() ___ <br>
+char ghost_move_easy/ghost_move_hard/ghost_move_impossible(uint16_t ghost_num, coordinates ghost_pos[])<br>
+NOTE: 3 different ghost_move functions. One per difficulty level.
+<ul>
+  <li>PARAMETERS: Takes unsigned integer and array of coordinated structs as input.</li>
+  <ol>
+    <li>EASY:</li>
+    <li>For each ghost, uses random number generator to determine 33/33/33 chance if ghost will move horizontally towards player, vertically towards player or not move at all.</li>
+    <li>If the ghost is blocked in the direction that has been chosen, ghost will not move</li>
+    <li>HARD:</li>
+    <li>For each ghost, uses random number generator to determin 50/50 chance if ghost will move horizontally towards player or vertically towards player. G</li>           <li>If the ghost is blocked in the direction that has been chosen, ghost will not move. Otherwise ghsot will always move towards player on every turn.</li>
+    <li>IMPOSSIBLE:</li>
+    <li>Each ghost will move both horizontally and veritcally towards player if possible to move in that direction. This means that the ghost can move diagonally.</li>
   </ol>
   <li>RETURN:</li>
 </ul>
+
+___ IF_ERROR() ___
+<br>
+void if_error(int16_t error_num)
+<ul>
+  <li> PARAMETERS: Takes integer (i.e. error code) as input.  </li>
+  <ol>
+    <li> Opens file errorKey.txt (which contains all of the potential error codes), scans the error key file for the appropriate corresponding error message.</li>
+    <li> Reads error message into dynamically allocated buffer (for ultimate modularity and ability for expansion moving forward)</li>
+    <li> Creates timestamp</li>
+    <li> Opens errorlog.csv, prints error code, error message and timestamp to error log</li>
+    <li> Prints error code/error message to the terminal</li>
+    <li> Exits program, returning correct error message from main().</li>
+    <li> Note: The 1st iteration of this function took an error message as an input, however, when creating a program in C and trying to make it as robust as possible, of course there are many NULL checks and error checks throughout the program, each of which has an if statement that calls this if_error() function, if triggered. Since each of those calls to if_error() initially took an error message string as input, this began to quickly make the code look very messy. So, for ultimate modularity, ease of use and maintenance moving forward (in addition to cleaning up messy code in the calling function), this function was redesigned to read the corresponding error message from an error key).</li>
+   </ol>
+  <li> RETURN: No return value. Exits program before returning.</li>
+</ul>
+
+
+___ START_SCREEN() ___ <br>
+void start_screen(void)
+<ul>
+  <li>PARAMETERS: Takes no inputs.</li>
+  <ol>
+    <li>Prints character by character to emulate typing.</li>
+    <li>Gives breif description of how to play the game</li>
+    <li>Calls print_ascii_art() function to print ASCII art of a snail and ghost</li>
+  </ol>
+  <li>RETURN: No return value.</li>
+</ul>
+
+
+___ COUNTDOWN() ___ <br>
+void countdown(uint16_t level)
+<ul>
+  <li>PARAMETERS: Take usigned integer as input so the function knows whcih level to display.</li>
+  <ol>
+    <li>Counts down from 3 to 1 letting player know the next level going to start</li>
+  </ol>
+  <li>RETURN: No return value.</li>
+</ul>
+
+___ PRINT_ASCII_ART() ___ <br>
+void print_ascii_art(char c)
+<ul>
+  <li>PARAMETERS: Take character as input to let function know which ASCII art to print</li>
+  <ol>
+    <li>Prints ASCII art (either snail or ghost) character by character.</li>
+  </ol>
+  <li>RETURN:</li>
+</ul>
+
 
 <ul>
   <li>PARAMETERS: </li>
@@ -155,4 +213,3 @@ char player_move(void)
   </ol>
   <li>RETURN:</li>
 </ul>
-
