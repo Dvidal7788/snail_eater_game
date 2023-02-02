@@ -143,7 +143,7 @@ char player_move(void)
 <ul>
   <li>PARAMETERS: Takes no input.</li>
   <ol>
-    <li>Uses inf_buffer() to ask user for input</li>
+    <li>Uses inf_buffer() to ask user for input (i.e. w, s, a, d to move up, down, left, right)</li>
   </ol>
   <li>RETURN:</li>
 </ul>
