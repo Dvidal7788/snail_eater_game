@@ -80,9 +80,9 @@ void reset_board(void)
 <ul>
   <li> PARAMETERS: No input
   <ol>
-    <li> 1. Uses nested loop to go through each space in the board[][] char 2D array, setting each char to '-' (using the macro BLANK)</li>
+    <li> Uses nested loop to go through each space in the board[][] char 2D array, setting each char to '-' (using the macro BLANK)</li>
   </ol>
-  <li> RETRUN: No return value.
+  <li> RETURN: No return value.
 </ul>
 ___ PRINT_BOARD() ___
 <br>
@@ -98,3 +98,41 @@ void print_board(uint16_t level)
 ___ SPAWN_PLAYER() ___
 <br>
 void spawn_player(void)
+<ul>
+  <li>PARAMETERS: No input.</li>
+  <ol>
+    <li> Uses random number generator along with the modulo operator to find a random spot on the board for the player to start at.</li>
+    <li> Since the player is the first to spawn, this function does not need to check if the space is empty. All spaces are empty at this point.</li>
+  </ol>
+  <li>RETURN: No return value</li>
+</ul>
+
+___SPAWN_BLOCKS()___
+<br>
+void spawn_blocks(uint16_t n)
+<ul>
+  <li>PARAMETERS: Takes unsigned integer as input, determing how many blocks to spawn.</li>
+  <ol>
+    <li>Uses random number generator/modulo operator to find random spot for pairs of blocks to appear on the board, and checks that space is empty.</li>
+    <li>Every other pair of blocks changes orientation.</li>
+  </ol>
+  <li>RETURN: No return value.</li>
+</ul>
+d
+___SPAWN GHOSTS()___
+<ul>
+  <li>PARAMETERS: Takes unsigned integer as input, determing how many snails to spawn.</li>
+  <ol>
+    <li>Uses random number generator/modulo operator to find random spot for snails to appear on the board, and checks that space is empty.</li>
+  </ol>
+  <li>RETURN: No return value.</li>
+</ul>
+
+
+<ul>
+  <li>PARAMETERS: </li>
+  <ol>
+    <li></li>
+  </ol>
+  <li>RETURN:</li>
+</ul>
