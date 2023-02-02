@@ -40,7 +40,7 @@ coordinates;
 void reset_board(void);
 void print_board(uint16_t level);
 void spawn_player(void);
-void spawn_blocks(uint16_t  n);
+void spawn_blocks(uint16_t n);
 void spawn_snails(uint16_t n);
 void spawn_ghosts(uint16_t  n, coordinates ghost_pos[]);
 char *inf_buffer(char *prompt);
