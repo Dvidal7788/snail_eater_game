@@ -11,7 +11,7 @@ BLOCKS: '##' <br>
 <li>Player is 'x'. <br> </li>
 <li>Use w,s,a,d to move up, down, left, right respectively. <br></li>
 <li>Eat all of the snails (represented as '@') to proceed to next level. <br></li>
-</0l> 
+</ol> 
 
 <ol>
 <li>The ghosts (represented as 'G') will randomly decide to move towards player after each turn (or if in impossible mode, will always move toward player after each turn).</li>
