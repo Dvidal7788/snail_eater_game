@@ -165,7 +165,7 @@ char *inf_buffer(char *prompt)
 //      ------- PLAYER MOVE --------
 char player_move(void)
 {
-    char *s = inf_buffer("Enter:\n");
+    char *s = inf_buffer("GO!:\n");
 
     if (tolower(s[0]) == 'w')
     {
