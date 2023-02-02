@@ -2,12 +2,7 @@
     // Player is 'x'
     // Avoid the ghosts (G) and eat the snails (@)
     // Eat all snails (@) to proceed to next level
-    // You can wrap around the border of the gameboard to the other side
-// 10.3.22
-// 10.4.22 - added border protection system for player and ghost. Added levels.
-    // 10.4.22: snail_again_seek.c: 4:30PM Adding ghost AI to seek player
-    // 10.31.22: When I compile using gcc or clang, it will not print chars 1 by 1 in my for loop in the start_screen(). It doesn't stop to sleep in every iteration of the loop.
-            // Only make will compile it the way I want. I don't understand why.
+    // Player can wrap around the border of the gameboard to the other side. Ghosts can not.
 
 #include <header.h>
 
@@ -30,9 +25,8 @@ int main(void)
     snail_count = starting_amt;
     uint16_t ghost_num = starting_amt, level = 1;
 
-    char *difficulty = choose_difficulty();
-
     start_screen();
+    char *difficulty = choose_difficulty();
     countdown(level);
 
     // ~~~~~ ~~~~~ ~~~~~ ~~~~~ BEGIN GAME ~~~~~ ~~~~~ ~~~~~ ~~~~~
@@ -79,23 +73,18 @@ int main(void)
             }
         }
 
-        // ~~~~~~~~~~~~~~~~~~ END SCREEN ~~~~~~~~~~~~~~~~~~
+        // ~~~~~~~ LEVEL END SCREEN ~~~~~~~
         print_board(0);
-        if (result == 'q')
-        {
-            printf("\n\n      Thanks for playing SNAIL EATER!!\n\n\t      ~~ GOODBYE!! ~~\n\n");
-            // check_high_score(level-1);
+        if (result == 'q') {
             break;
         }
-        else if (snail_count == 0)
-        {
+        else if (snail_count == 0) {
             printf("\n\n\n\t   YOU PASSED LEVEL %i!!!\n\n", level);
             level++;
             snail_count = starting_amt + level-1;
             ghost_num = snail_count;
         }
-        else if (result == 'g')
-        {
+        else if (result == 'g') {
             printf("\n\n\n\t\t YOU LOSE!!\n\n\t\tREDO LEVEL %i\n", level);
             snail_count = starting_amt + level-1;
             ghost_num = snail_count;
@@ -104,6 +93,11 @@ int main(void)
         // COUNTDOWN
         countdown(level);
     }
+
+    // ~~~~~~~~~~~~~~~~~~ FINAL END SCREEN ~~~~~~~~~~~~~~~~~~
+    printf("\n\n      Thanks for playing SNAIL EATER!!\n\n\t      ~~ GOODBYE!! ~~\n\n");
+    print_ascii_art('s');
+    print_ascii_art('g');
 
     // HIGHEST SCORE/RECORD SCORE
     uint16_t score = level-1;

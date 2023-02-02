@@ -325,7 +325,7 @@ char player_move(void)
     else
     {
         // WRONG INPUT
-        printf("\n\nERROR: a,w,s,d  ONLY!\n\n");
+        printf("\n\nType a,w,s,d  ONLY! You lost a turn!");
     }
 
 
@@ -426,7 +426,8 @@ char ghost_move_hard(uint16_t ghost_num, coordinates ghost_pos[])
     // Iterate for each ghost on the board
     for (int i = 0; i < ghost_num; i++)
     {
-        // Random decide whether ghost will move horizontal or vertical, but not both
+        // Random decide whether ghost will move horizontal or vertical, but not both.
+        // Ghost will move towards player on each move
         uint8_t random_return = rand() % 2;
 
         if (random_return == 0)
@@ -659,19 +660,18 @@ void start_screen(void)
     for (uint8_t i = 0; i < strlen(s); i++) {printf("%c", s[i]); fflush(stdout); usleep(20000);}
 
     usleep(100000);
-    print_ascii_art('s', 1);
+    print_ascii_art('s');
     usleep(1500000);
 
     usleep(100000);
     char s2[] = "    *** DON'T LET THE GHOSTS EAT YOU!! (G) ***\n\n";
     for (uint8_t i = 0; i < strlen(s2); i++) {printf("%c", s2[i]); fflush(stdout); usleep(18000);}
-    print_ascii_art('g', 1);
+    print_ascii_art('g');
     usleep(1500000);
 
     usleep(100000);
     char s3[] = "  *** Type 'a', 's', 'w', 'd' to move!! ***\n\n";
     for (uint8_t i = 0; i < strlen(s3); i++) {printf("%c", s3[i]); fflush(stdout); usleep(18000);}
-    // usleep(1500000);
 
     usleep(100000);
     char s4[] = " *** Or type 'quit' at any time to exit game! ***";
@@ -728,60 +728,35 @@ void countdown(uint16_t level)
 }
 
 //      ---- PRINT_ASCII_ART() -----
-void print_ascii_art(char c, uint64_t time)
+void print_ascii_art(char c)
 {
-    if (c == 's' && time == 0)
-    {
-        printf("\t    .----.   @   @\n");
-        printf("\t   / .-\"-.`.  \\v/\n");
-        printf("\t   | | '\\ \\ \\_/ )\n");
-        printf("\t ,-\\ `-.' /.'  /\n");
-        printf("\t'---`----'----'\n");
-    }
-    else if (c == 's' && time != 0)
+    if (c == 's')
     {
         char s[] = "\t         .----.   @   @\n";
         for (uint8_t i = 0; i < strlen(s); i++) {printf("%c", s[i]); fflush(stdout); usleep(8000);}
-        // usleep(time);
         char s2[] = "\t        / .-\"-.`.  \\v/\n";
         for (uint8_t i = 0; i < strlen(s2); i++) {printf("%c", s2[i]); fflush(stdout); usleep(8000);}
-        // usleep(time);
         char s3[] = "\t        | | '\\ \\ \\_/ )\n";
         for (uint8_t i = 0; i < strlen(s3); i++) {printf("%c", s3[i]); fflush(stdout); usleep(8000);}
-        // usleep(time);
         char s4[] = "\t      ,-\\ `-.' /.'  /\n";
         for (uint8_t i = 0; i < strlen(s4); i++) {printf("%c", s4[i]); fflush(stdout); usleep(8000);}
-        // usleep(time);
         char s5[] = "\t     '---`----'----'\n\n";
         for (uint8_t i = 0; i < strlen(s5); i++) {printf("%c", s5[i]); fflush(stdout); usleep(8000);}
-        // usleep(time);
     }
-    else if (c == 'g' && time == 0)
-    {
-        printf("\t\t      .-.\n");
-        printf("\t\t     (o o)\n");
-        printf("\t\t     | O \\\n");
-        printf("\t\t      \\   \\\n");
-        printf("\t\t       `~~~'\n\n");
-    }
-    else if (c == 'g' && time != 0)
+    else if (c == 'g')
     {
         char s[] = "\t           .-.\n";
         for (uint8_t i = 0; i < strlen(s); i++) {printf("%c", s[i]); fflush(stdout); usleep(10000);}
-        usleep(time);
         char s2[] = "\t          (o o)\n";
         for (uint8_t i = 0; i < strlen(s2); i++) {printf("%c", s2[i]); fflush(stdout); usleep(10000);}
-        usleep(time);
         char s3[] = "\t          | O \\\n";
         for (uint8_t i = 0; i < strlen(s3); i++) {printf("%c", s3[i]); fflush(stdout); usleep(10000);}
-        usleep(time);
         char s4[] = "\t           \\   \\\n";
         for (uint8_t i = 0; i < strlen(s4); i++) {printf("%c", s4[i]); fflush(stdout); usleep(10000);}
-        usleep(time);
         char s5[] = "\t           `~~~'\n\n";
         for (uint8_t i = 0; i < strlen(s5); i++) {printf("%c", s5[i]); fflush(stdout); usleep(10000);}
-        usleep(time);
     }
+
     return;
 }
 
@@ -789,7 +764,7 @@ char *choose_difficulty(void)
 {
     while (true) {
 
-        char *difficulty = inf_buffer("Choose difficulty level (easy, hard, or impossible): ");
+        char *difficulty = inf_buffer("\nChoose difficulty level (easy, hard, or impossible): ");
 
         if (strcasecmp(difficulty, "easy") == 0 || strcasecmp(difficulty, "hard") == 0 ||strcasecmp(difficulty, "impossible") == 0 ){
             return difficulty;
@@ -803,7 +778,7 @@ char *choose_difficulty(void)
 
 uint16_t display_highest_scores(char *difficulty)
 {
-    uint16_t all_time;
+    uint16_t all_time = 0;
     // Use bash sort program to sort scores and open sorted csv in read mode
     FILE *file = NULL;
     if (strcasecmp(difficulty, "easy") == 0) {
@@ -836,6 +811,7 @@ uint16_t display_highest_scores(char *difficulty)
     i = malloced = num_of_high_scores = 0;
     char *score1, *score2;
     score1 = score2 = NULL;
+    int8_t tmp_char; /* Use int8_t tmp_char because whether char is signed or unsigned is implementation dependent. Need signed for EOF. */
     while (!eof_reached)
     {
 
@@ -846,14 +822,14 @@ uint16_t display_highest_scores(char *difficulty)
         uint8_t j = 0;
 
         // Iterate until next row (i.e '\n')
-        while ((highest_scores[i][j] = getc(file)) != '\n') {
+        while ((tmp_char = getc(file)) != '\n') {
 
             // Check for EOF
-            if (highest_scores[i][j] == EOF) {eof_reached = true; break;}
+            if (tmp_char == EOF) {eof_reached = true; break;}
 
             // Realloc
-            if (highest_scores[i][j] != '\n') {
-
+            if (tmp_char != '\n') {
+                highest_scores[i][j] = tmp_char;
                 highest_scores[i] = realloc(highest_scores[i], (sizeof(char)*(j+2)));
                 if (highest_scores[i] == NULL) if_error(3);
                 j++;
@@ -881,29 +857,34 @@ uint16_t display_highest_scores(char *difficulty)
             }
             score1[tmp_j] = '\0';
 
-            // Remember all time high score
-            all_time = atoi(score1);
+            // Ensure there are entries
+            if (strcasecmp(score1, "score") != 0) {
 
-            uint8_t tmp_j2 = 0;
-            score2 = malloc(sizeof(char));
-            if (score2 == NULL) if_error(1);
+                // Remember all time high score
+                all_time = atoi(score1);
 
-            score2[tmp_j2] = highest_scores[i][tmp_j2];
-            while (highest_scores[i][tmp_j2] != ',') {
-
-                score2 = realloc(score2, sizeof(char)*tmp_j2+2);
-                tmp_j2++;
+                uint8_t tmp_j2 = 0;
+                score2 = malloc(sizeof(char));
+                if (score2 == NULL) if_error(1);
 
                 score2[tmp_j2] = highest_scores[i][tmp_j2];
-            }
-            score2[tmp_j2] = '\0';
+                while (highest_scores[i][tmp_j2] != ',') {
 
-            // printf("SCORE1: %s\nSCORE2: %s\n", score1, score2);
-            if (atoi(score1) > atoi(score2)) {
-                break;
+                    score2 = realloc(score2, sizeof(char)*tmp_j2+2);
+                    tmp_j2++;
+
+                    score2[tmp_j2] = highest_scores[i][tmp_j2];
+                }
+                score2[tmp_j2] = '\0';
+
+                // printf("SCORE1: %s\nSCORE2: %s\n", score1, score2);
+                if (atoi(score1) > atoi(score2)) {
+                    break;
+                }
+                free(score2);
             }
+
             free(score1);
-            free(score2);
             score1 = score2 = NULL;
         }
         num_of_high_scores++;
@@ -929,8 +910,9 @@ uint16_t display_highest_scores(char *difficulty)
 
 
     // Free
-    for (int i = 0; i < malloced; i++) {free(highest_scores[i]);}
+    for (int i = 0; i < malloced; i++) {free(highest_scores[i]); highest_scores[i] = NULL;}
     free(highest_scores);
+    highest_scores = NULL;
     fclose(file);
     file = NULL;
     free(score1);
@@ -946,7 +928,7 @@ void record_new_score(char *difficulty, uint16_t score)
     char *record_score = NULL;
     while (true) {
 
-        record_score = inf_buffer("Would you like to record your score? (yes or no): ");
+        record_score = inf_buffer("\nWould you like to record your score? (yes or no): ");
         if (strcasecmp(record_score, "yes") != 0 && strcasecmp(record_score, "no") != 0) {
             printf("Please type 'yes' or 'no' only.\n");
         }
@@ -958,7 +940,7 @@ void record_new_score(char *difficulty, uint16_t score)
     }
 
     // Return if user does not want to record score
-    if (strcasecmp(record_score, "no") == 0) return;
+    if (strcasecmp(record_score, "no") == 0) {free(record_score); record_score = NULL; return;}
 
     // Get users name
     char *name = NULL, *yes_or_no = NULL;
@@ -988,7 +970,6 @@ void record_new_score(char *difficulty, uint16_t score)
     // Open csv file (append mode)
     FILE *file = NULL;
     if (strcasecmp(difficulty, "easy") == 0) {
-        printf("HERE\n");
         file = fopen("resources/scores_easy.csv", "a");
     }
     else if (strcasecmp(difficulty, "hard") == 0) {
@@ -1019,74 +1000,3 @@ void record_new_score(char *difficulty, uint16_t score)
     return;
 }
 
-
-// // DOES NOT WORK YET:
-// //      ____ CHECK HIGH SCORE ____
-// void check_high_score(int16_t current_score)
-// {
-//     // Path
-//     const char *highscorePath = "src/resources/high_scores.csv";
-
-//     // Open File to Read
-//     FILE *highscore_file = fopen(highscorePath, "r+");
-//     if (highscore_file == NULL) {if_error(4);}
-
-//     uint64_t i = 0;
-//     char *fgetc_ret = malloc(sizeof(char));
-//     if (fgetc_ret == NULL){ if_error(6);}
-
-
-//     // Skip csv header (1st line)
-//     while ((fgetc_ret[0] = fgetc(highscore_file)) != '\n');
-
-//     // Next column (High Scores)
-//     while ((fgetc_ret[0] = fgetc(highscore_file)) != ',');
-
-//     // RECORD NEW SCORE (If blank or new score is higher):
-//     while ((fgetc_ret[i] = fgetc(highscore_file)) != ',') i++;
-//     fgetc_ret[i] = '\0';
-
-
-//     printf("%s\n%li\n", fgetc_ret, strlen(fgetc_ret));
-//     current_score++;
-//     // if (strcmp(fgetc_ret, "BLANK") == 0) {
-//     //     fseek(highscore_file, -6, SEEK_CUR);
-//     //     record_score(current_score, highscore_file);
-//     // }
-//     // else if (current_score > atoi(fgetc_ret)) {
-//     //     uint16_t l = 0;
-//     //     while (fgetc(highscore_file) != '\n') l++;
-//     //     fseek(highscore_file, l+1, SEEK_CUR);
-//     //     record_score(current_score, highscore_file);
-//     // }
-
-
-//     fclose(highscore_file);
-//     highscore_file = NULL;
-//     free(fgetc_ret);
-//     fgetc_ret = NULL;
-//     return;
-
-// }
-
-// //      ____ RECORD NEW SCORE ____
-// void record_score(uint64_t highscore, FILE *ptr)
-// {
-//     // User Enter Name
-//     char *name = inf_buffer("\nCongrats! YOU SET A NEW HIGH SCORE!!!\nENTER YOUR NAME: ");
-
-//     // TIME
-//     time_t t;
-//     time(&t);
-//     uint8_t l = strlen(ctime(&t));
-//     char *timestamp = ctime(&t);
-//     timestamp[l-1] = '\0';
-
-//     // Log New Score
-//     int print_return = fprintf(ptr, "%ld,%s,%s", highscore, name, timestamp);
-//     printf("fprintf RETURN: %i\n\n", print_return);
-
-//     free(name);
-//     name = NULL;
-//     return;
-// }

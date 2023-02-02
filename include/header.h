@@ -51,7 +51,7 @@ char ghost_move_impossible(uint16_t ghost_num, coordinates ghost_pos[]);
 void if_error(uint8_t n);
 void start_screen(void);
 void countdown(uint16_t level);
-void print_ascii_art(char c, uint64_t time);
+void print_ascii_art(char c);
 char *choose_difficulty(void);
 uint16_t display_highest_scores(char *difficulty);
 void record_new_score(char *difficulty, uint16_t score);
