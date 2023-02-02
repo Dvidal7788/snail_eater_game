@@ -67,3 +67,19 @@ void if_error(int16_t error_num)
 - 6. Exits program, returning correct error message from main().
 - Note: The 1st iteration of this function took an error message as an input, however, when creating a program in C and trying to make it as robust as possible, of course there are many NULL checks and error checks throughout the program, each of which has an if statement that calls this if_error() function, if triggered. Since each of those calls to if_error() initially took an error message string as input, this began to quickly make the code look very messy. So, for ultimate modularity, ease of use and maintenance moving forward (in addition to cleaning up messy code in the calling function), this function was redesigned to read the corresponding error message from an error key).
 - RETURN: No return. Exits program before returning.
+
+___ RESET_BOARD() ___
+<br>
+void reset_board(void)
+- 1. Uses nested loop to go through each space in the board[][] char 2D array, setting each char to '-' (using the macro BLANK)
+
+___ PRINT_BOARD() ___
+<br>
+void print_board(uint16_t level)
+- PARAMETERS: takes integer as input to display the current level at the top of the screen
+-1. Uses nested loop to print each char in the 2D char array baord[][], using the macros HEIGHT and WIDTH to easily be able to change the board size.
+
+
+___ SPAWN_PLAYER() ___
+<br>
+void spawn_player(void)
