@@ -6,6 +6,7 @@ SNAILS: '@' <br>
 GHOSTS: 'G' <br>
 BLOCKS: '##' <br>
 
+<h2>Basic Gameplay:
 <ul>
 <li>Player is 'x'. <br> </li>
 <li>Use w,s,a,d to move up, down, left, right respectively. <br></li>
