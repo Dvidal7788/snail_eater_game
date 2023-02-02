@@ -48,11 +48,12 @@ GO!:
 ___ INF_BUFFER() ____
 <br>
 char *inf_buffer(char *prompt)
-
-- PARAMETERS: Takes string as input.
-- 1. Prompts user with string given as input.
-- 2. Mallocs initial char. Reallocs one char at a time until '\n' is reached, at which point that char will be changed to '\0'.
-- RETURN: Will return dynamically allocated string. It is up to the programmer to free this string in the calling function.
+<ul>
+<li>- PARAMETERS: Takes string as input.</li>
+<li>- 1. Prompts user with string given as input.</li>
+<li>- 2. Mallocs initial char. Reallocs one char at a time until '\n' is reached, at which point that char will be changed to '\0'.</li>
+<li>- RETURN: Will return dynamically allocated string. It is up to the programmer to free this string in the calling function.</li>
+</ul>
 
 ___ IF_ERROR() ___
 <br>
