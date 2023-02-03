@@ -34,10 +34,10 @@ BLOCKS: '##' <br>
 	<h6>Hint: Ghosts can not move through blocks or snails (in any mode). This mean they can get stuck behind blocks or snails depending on their orientation in relation to the player. Use this to your advantage!</h6>
 
 <h3>GAMEBOARD:</h3>
-                         	~~~ SNAIL EATER ~~~
+                         	
 
                	~~~ SNAIL EATER ~~~
-		- Level 1 -
+		    - Level 1 -
 
 
             	- - - - - # # - @
