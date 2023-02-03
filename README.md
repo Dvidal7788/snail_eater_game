@@ -22,6 +22,7 @@ BLOCKS: '##' <br>
 <li>The player and ghosts can not go through blocks (represented as '#')</li>
 <li>The player CAN go though border edge of the gameboard to wrap around to the other side (hint: very useful in avoiding ghost who can NOT wrap around the border)</li>
 <li>Each new level: 1 more ghost, 1 more snail and 1 more block will appear.</li>
+<li>Type 'quit' anytime to quit! Otherwise, keep playing indefinitely; there are no lives lost for dying, you simply repeat the level!</li>
 </ol>
 <h5>How the ghosts (represented as 'G') move in each mode:</h5>
 	<h6>Easy Mode:</h6>
@@ -29,10 +30,6 @@ BLOCKS: '##' <br>
 	<h6>Hard Mode:</h6>
 		<li>Each ghost will 50/50 randomly decide whether to move 1 space horizontally towards player or 1 space vertically towards player.</li>
 	<h6>Impossible Mode:</h6><li>Each ghost will move both horizontally and vertically towards player if possible (which means they can move diagonally!)</li>
-
-<ul>
-<li>Type 'quit' anytime to quit! Otherwise, keep playing indefinitely; there are no lives lost for dying, you simply repeat the level!</li>
-</ul>
 
 <h3>GAMEBOARD:</h3>
                          	~~~ SNAIL EATER ~~~
