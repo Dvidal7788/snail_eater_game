@@ -35,22 +35,11 @@ BLOCKS: '##' <br>
 
 <h3>GAMEBOARD:</h3>
                          	
-
-               	~~~ SNAIL EATER ~~~
-			- Level 1 -
-
-
-            	- - - - - # # - @
-            	- @ - - - - - - -
-            	- - - - x - - - -
-            	# # - - - - - G -
-            	- - - - - - - - -
-            	- - # # - - - - -
-            	- - - - - - @ - -
-            	- G - - - - - - -
-            	- - - - - - G - -
-
-GO!:
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="https://drive.google.com/drive/u/1/recent">
+  <source media="(prefers-color-scheme: light)" srcset="https://drive.google.com/drive/u/1/recent">
+  <img alt="Gameboard" src="https://drive.google.com/drive/u/1/recent">
+</picture>
 
 <h3>LIST OF FUNCTIONS:</h3>
 
