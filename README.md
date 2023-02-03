@@ -24,7 +24,7 @@ BLOCKS: '##' <br>
 	<li>Each new level: 1 more ghost, 1 more snail and 1 more block will appear.</li>
 	<li>Type 'quit' anytime to quit! Otherwise, keep playing indefinitely; there are no lives lost for dying, you simply repeat the level!</li>
 </ul>
-<h5>How the ghosts (represented as 'G') move in each mode:</h5>
+<h4>How the ghosts (represented as 'G') move in each mode:</h4>
 	<h6>Easy Mode:</h6>
 		<li>Each ghost will 33/33/33 randomly decide whether to move 1 space horizontally towards player, 1 space vertically towards player or not move at all.</li>
 	<h6>Hard Mode:</h6>
