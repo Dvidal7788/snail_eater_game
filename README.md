@@ -24,7 +24,7 @@ BLOCKS: '##' <br>
 <li>Each new level: 1 more ghost, 1 more snail and 1 more block will appear.</li>
 </ol>
 <h5>How the ghosts (represented as 'G') move in each mode:</h5>
-	<h6>In Easy Mode:</h6>
+	<h6>Easy Mode:</h6>
 		<li>Each ghost will 33/33/33 randomly decide whether to move 1 space horizontally towards player, 1 space vertically towards player or not move at all.</li>
 	<h6>Hard Mode:</h6>
 		<li>Each ghost will 50/50 randomly decide whether to move 1 space horizontally towards player or 1 space vertically towards player.</li>
