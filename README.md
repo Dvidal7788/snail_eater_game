@@ -105,7 +105,7 @@ void spawn_ghosts(uint16_t n)
 <ul>
   <li>PARAMETERS: Takes unsigned integer as input, determing how many snails to spawn.</li>
   <ol>
-	<li>Uses random number generator/modulo operator to find random spot for snails to appear on the board, and checks that space is empty.</li>
+	<li>Uses random number generator and modulo operator to find random spot for snails to appear on the board, and checks that that space is empty.</li>
   </ol>
   <li>RETURN: No return value.</li>
 </ul>
@@ -115,7 +115,7 @@ void spawn_ghosts(uint16_t n, coordinates ghost_pos[])
 <ul>
   <li>PARAMETERS: Takes unsigned integer and array of coordinates struct as input</li>
   <ol>
-	<li>Uses random number generator/modulo operator to find random spot for snails to appear on the board, and checks that space is empty.</li>
+	<li>Uses random number generator and modulo operator to find random spot for snails to appear on the board, and checks that that space is empty.</li>
 	<li>Keeps track of ghost positions using array of coordinates (which is a struct I declared in the header file, consisting of 2 integers).</li>
   </ol>
   <li>RETURN: No return value</li>
@@ -127,8 +127,8 @@ char *inf_buffer(char *prompt)
 <ul>
 <li> PARAMETERS: Takes string as input.</li>
   <ol>
-	<li>- Prompts user with string given as input.</li>
-	<li>- Mallocs initial char. Reallocs one char at a time until '\n' is reached, at which point that char will be changed to '\0'.</li>
+	<li>Prompts user with string given as input.</li>
+	<li>Mallocs initial char. Reallocs one char at a time until '\n' is reached, at which point that char will be changed to '\0'.</li>
   </ol>
 <li> RETURN: Will return dynamically allocated string. It is up to the programmer to free this string in the calling function.</li>
 </ul>
@@ -139,13 +139,13 @@ char player_move(void)
   <li>PARAMETERS: Takes no input.</li>
   <ol>
 	<li>Uses inf_buffer() to ask user for input (i.e. w, s, a, d to move up, down, left, right)</li>
-	<li>Determines if player is at the boarder or not and checks if the direction the player wants to move is blocked by a block or if a ghost is there (taking into account that if the player is at the border, the other side of the board needs to be checked, since the player can wrap around the border)</li>
-	<li>If space is free, player moves to new space and player position is saved in macros p_x and p_y.</li>
-	<li>If space is occupied by a block, player does not move.</li>
-	<li>If space is occupied by a snail, player moves, new player position is remembered and snail_count macro is decremeneted by 1.</li>
-	<li>If space is occupied by ghost, player loses.</li>
+	<li>Determines if player is at the border or not and checks if the direction the player wants to move is blocked by a block or if a ghost is there (taking into account that if the player is at the border, the other side of the board needs to be checked, since the player can wrap around the border)</li>
+	<li>If the space is free, rhe player moves to the new space and player position is saved in macros p_x and p_y.</li>
+	<li>If the space is occupied by a block, the player does not move.</li>
+	<li>If the space is occupied by a snail, player moves, the new player position is remembered and snail_count macro is decremeneted by 1.</li>
+	<li>If the space is occupied by ghost, the player loses.</li>
   </ol>
-  <li>RETURN: Return char letting calling function (i.e. main()) determing if player has ran into a ghost, decided to quit or nothing happened.</li>
+  <li>RETURN: Returns char to inform calling function if player has ran into a ghost, decided to quit or nothing happened.</li>
 </ul>
 
 __ GHOST_MOVE() ___ <br>
@@ -156,13 +156,14 @@ NOTE: 3 different ghost_move functions. One per difficulty level.
   <ol>
 	<li>EASY:</li>
 	<li>For each ghost, uses random number generator to determine 33/33/33 chance if ghost will move horizontally towards player, vertically towards player or not move at all.</li>
-	<li>If the ghost is blocked in the direction that has been chosen, ghost will not move</li>
+	<li>If the ghost is blocked in the direction that has been randomly chosen, the ghost will not move</li>
 	<li>HARD:</li>
-	<li>For each ghost, uses random number generator to determin 50/50 chance if ghost will move horizontally towards player or vertically towards player. G</li>       	<li>If the ghost is blocked in the direction that has been chosen, ghost will not move. Otherwise ghsot will always move towards player on every turn.</li>
+	<li>For each ghost, uses random number generator to determine 50/50 chance if the ghost will move horizontally towards player or vertically towards player.</li>       	
+	<li>If the ghost is blocked in the direction that has been chosen, the ghost will not move. Otherwise ghost will always move towards player on every turn.</li>
 	<li>IMPOSSIBLE:</li>
 	<li>Each ghost will move both horizontally and veritcally towards player if possible to move in that direction. This means that the ghost can move diagonally.</li>
   </ol>
-  <li>RETURN:</li>
+  <li>RETURN: Returns char letting calling function know if player has been eaten or not.</li>
 </ul>
 
 ___ IF_ERROR() ___
@@ -172,14 +173,13 @@ void if_error(int16_t error_num)
   <li> PARAMETERS: Takes integer (i.e. error code) as input.  </li>
   <ol>
 	<li> Opens file errorKey.txt (which contains all of the potential error codes), scans the error key file for the appropriate corresponding error message.</li>
-	<li> Reads error message into dynamically allocated buffer (for ultimate modularity and ability for expansion moving forward)</li>
-	<li> Creates timestamp</li>
-	<li> Opens errorlog.csv, prints error code, error message and timestamp to error log</li>
-	<li> Prints error code/error message to the terminal</li>
+	<li> Reads error message into dynamically allocated buffer (for ultimate modularity and ability for expansion moving forward).</li>
+	<li> Creates timestamp.</li>
+	<li> Opens errorlog.csv, appends error code, error message and timestamp to error log.</li>
+	<li> Prints error code/error message to the terminal.</li>
 	<li> Exits program, returning correct error message from main().</li>
-	<li> Note: The 1st iteration of this function took an error message as an input, however, when creating a program in C and trying to make it as robust as possible, of course there are many NULL checks and error checks throughout the program, each of which has an if statement that calls this if_error() function, if triggered. Since each of those calls to if_error() initially took an error message string as input, this began to quickly make the code look very messy. So, for ultimate modularity, ease of use and maintenance moving forward (in addition to cleaning up messy code in the calling function), this function was redesigned to read the corresponding error message from an error key).</li>
    </ol>
-  <li> RETURN: No return value. Exits program before returning.</li>
+  <li> RETURN: No return value. (Exits program before returning.)</li>
 </ul>
 
 
@@ -188,9 +188,9 @@ void start_screen(void)
 <ul>
   <li>PARAMETERS: Takes no inputs.</li>
   <ol>
-	<li>Prints character by character to emulate typing.</li>
-	<li>Gives breif description of how to play the game</li>
-	<li>Calls print_ascii_art() function to print ASCII art of a snail and ghost</li>
+	<li>Prints start messages character by character (with milliseconds of sleep in between) to emulate typing.</li>
+	<li>Gives breif description of how to play the game.</li>
+	<li>Calls print_ascii_art() function to print ASCII art of a snail and ghost.</li>
   </ol>
   <li>RETURN: No return value.</li>
 </ul>
@@ -199,23 +199,25 @@ void start_screen(void)
 ___ COUNTDOWN() ___ <br>
 void countdown(uint16_t level)
 <ul>
-  <li>PARAMETERS: Take usigned integer as input so the function knows whcih level to display.</li>
+  <li>PARAMETERS: Takes usigned integer as input so the function knows whcih level to display.</li>
   <ol>
-	<li>Counts down from 3 to 1 letting player know the next level going to start</li>
+	<li>Counts down from 3 to 1 letting player know the next level going to start.</li>
   </ol>
   <li>RETURN: No return value.</li>
 </ul>
 
+	
 ___ PRINT_ASCII_ART() ___ <br>
 void print_ascii_art(char c)
 <ul>
-  <li>PARAMETERS: Take character as input to let function know which ASCII art to print</li>
+  <li>PARAMETERS: Takes character as input to let function know which ASCII art to print</li>
   <ol>
 	<li>Prints ASCII art (either snail or ghost) character by character.</li>
   </ol>
-  <li>RETURN:</li>
+  <li>RETURN: No return value.</li>
 </ul>
 
+	
 ___ CHOOSE_DIFFICULTY() ___<br>
 char *choose_difficulty(void)
 <ul>
@@ -227,20 +229,22 @@ char *choose_difficulty(void)
   <li>RETURN: Returns dynamically allocated string. Must be freed in calling function.</li>
 </ul>
 
+	
 ___ DISPLAY_HIGHEST_SCORE() ___
 uint16_t display_highest_scores(char *difficulty)
 <ul>
   <li>PARAMETERS: Takes string as input to determine which csv file to read from.</li>
   <ol>
-	<li>Each difficulty level has its own csv file keeping track of the scores.</li>
-	<li>Uses system() to execute bash commands to pipeline the output of cat for the correct scores csv into the bash sort program. Then pipelines the output of sort into a sorted csv file.</li>
-	<li>The sorted csv file is now opened in read mode, reading each score entry until the second place score is found. This way we can keep track of all the people who have tied for first place, if there are ties, as opposed to simply reading the top entry. These entries are kept track of in an array of strings.</li>
-	<li>Either the top scorer or the people who have tied for the top score are displayed for the player to see.</li>
+	<li>Each difficulty level has its own csv file keeping track of the scores users have recorded.</li>
+	<li>Uses system() to execute bash commands to pipeline the output of 'cat' for the correct scores csv into the bash 'sort' program. Then pipelines the output of 'sort' into a sorted csv file.</li>
+	<li>The sorted csv file is now opened in read mode, reading each score entry until the second place score is found. This way we can keep track of all the people who have tied for first place, (if there are ties for 1st), as opposed to simply reading the top entry. These entries are kept track of in an array of strings.</li>
+	<li>Either the single top scorer or all of the people who have tied for the top score are displayed for the player to see.</li>
 	<li>An integer of the top score is returned to the calling function, to let the player know if they have beaten or tied the top score.</li>
   </ol>
   <li>RETURN: Returns unsigned integer of the all time highest score.</li>
 </ul>
  
+	
 ___ RECORD_NEW_SCORE() ___  
 void record_new_score(char *difficulty, uint16_t score)
 <ul>
