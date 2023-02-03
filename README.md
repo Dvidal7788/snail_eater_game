@@ -21,7 +21,7 @@ BLOCKS: '##' <br>
 </ol>
 
 <ol>
-<li>How the ghosts (represented as 'G') move:
+	<h5>How the ghosts (represented as 'G') move:</h5>
 	<h6>In Easy Mode:</h6>
 		<li>Each ghost will 33/33/33 randomly decide whether to move 1 space horizontally towards player, 1 space vertically towards player or not move at all.</li>
 	<h6>Hard Mode:</h6>
