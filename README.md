@@ -35,20 +35,7 @@ BLOCKS: '##' <br>
 
 <h3>GAMEBOARD:</h3>
                          	
-
-             ~~~ SNAIL GAME ~~~
-                 - Level 3 -
-
-             - - - - - - - - - 
-             G - - - # # - x - 
-             - - - # # - - - - 
-             - @ - - - - # - - 
-             - - - - - - # - - 
-             - - - - - - - - - 
-             - - # # - - - - # 
-             - - @ - - - - - # 
-             - - - G - - - G @              Snails left: 3
-GO!:![Snail Game Screenshot](https://user-images.githubusercontent.com/91298183/216680057-b206ffc9-1971-479a-914b-ddcf78848bad.png)
+![Snail Game Screenshot](https://user-images.githubusercontent.com/91298183/216680057-b206ffc9-1971-479a-914b-ddcf78848bad.png)
 
 
 
