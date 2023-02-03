@@ -220,3 +220,12 @@ void print_ascii_art(char c)
   </ol>
   <li>RETURN:</li>
 </ul>
+  
+--- CHOOSE_DIFFICULTY() ---
+<ul>
+  <li>PARAMETERS: </li>
+  <ol>
+    <li></li>
+  </ol>
+  <li>RETURN:</li>
+</ul>
