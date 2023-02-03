@@ -37,7 +37,7 @@ BLOCKS: '##' <br>
                          	
 
                	~~~ SNAIL EATER ~~~
-		&nbsp;- Level 1 -
+		<space><space><space>- Level 1 -
 
 
             	- - - - - # # - @
