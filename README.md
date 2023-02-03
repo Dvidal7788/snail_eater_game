@@ -48,7 +48,7 @@ BLOCKS: '##' <br>
              - - # # - - - - # 
              - - @ - - - - - # 
              - - - G - - - G @              Snails left: 3
-	     GO!:
+GO!:
 
 
 <h3>LIST OF FUNCTIONS:</h3>
