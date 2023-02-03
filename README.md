@@ -14,7 +14,7 @@ PLAYER: 'x' <br>
 SNAILS: '@' <br>
 GHOSTS: 'G' <br>
 BLOCKS: '##' <br>
-<ol>
+<ul>
 <li>Player is 'x'. <br> </li>
 <li>Use w,s,a,d to move up, down, left, right respectively. Hit enter after selecting which direction to move.<br></li>
 <li>Eat all of the snails (represented as '@') to proceed to next level. <br></li>	
@@ -23,7 +23,7 @@ BLOCKS: '##' <br>
 <li>The player CAN go though border edge of the gameboard to wrap around to the other side (hint: very useful in avoiding ghost who can NOT wrap around the border)</li>
 <li>Each new level: 1 more ghost, 1 more snail and 1 more block will appear.</li>
 <li>Type 'quit' anytime to quit! Otherwise, keep playing indefinitely; there are no lives lost for dying, you simply repeat the level!</li>
-</ol>
+</ul>
 <h5>How the ghosts (represented as 'G') move in each mode:</h5>
 	<h6>Easy Mode:</h6>
 		<li>Each ghost will 33/33/33 randomly decide whether to move 1 space horizontally towards player, 1 space vertically towards player or not move at all.</li>
