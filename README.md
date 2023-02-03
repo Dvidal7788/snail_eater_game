@@ -21,7 +21,13 @@ BLOCKS: '##' <br>
 </ol>
 
 <ol>
-<li>The ghosts (represented as 'G') will randomly decide to move towards player after each turn (or if in impossible mode, will always move toward player after each turn).</li>
+<li>How the ghosts (represented as 'G') move:
+	<h6>In Easy Mode:</h6>
+		<li>Each ghost will 33/33/33 randomly decide whether to move 1 space horizontally towards player, 1 space vertically towards player or not move at all.</li>
+	<h6>Hard Mode:</h6>
+		<li>Each ghost will 50/50 randomly decide whether to move 1 space horizontally towards player or 1 space vertically towards player.</li>
+	<h6>Impossible Mode:</h6><li>Each ghost will move both horizontally and vertically towards player if possible (which means they can move diagonally!)</li>
+	
 <li>If you run into a ghost or if a ghost runs into you, you lose! (i.e. you must repeat the level).</li>
 <li>The player and ghosts can not go through blocks (represented as '#')</li>
 <li>The player CAN go though border edge of the gameboard to wrap around to the other side (hint: very useful in avoiding ghost who can NOT wrap around the border)</li>
