@@ -63,8 +63,7 @@ void reset_board(void)
   </ol>
   <li> RETURN: No return value.
 </ul>
-	
-	
+<br>
 ___ PRINT_BOARD() ___
 <br>
 void print_board(uint16_t level)
@@ -76,7 +75,7 @@ void print_board(uint16_t level)
   <li> RETURN: No return value.</li>
 </ul>
 
-
+<br>
 ___ SPAWN_PLAYER() ___
 <br>
 void spawn_player(void)
@@ -88,7 +87,8 @@ void spawn_player(void)
   </ol>
   <li>RETURN: No return value</li>
 </ul>
-
+	
+<br>
 ___ SPAWN_BLOCKS()___ <br>
 void spawn_blocks(uint16_t n)
 <ul>
@@ -100,6 +100,7 @@ void spawn_blocks(uint16_t n)
   <li>RETURN: No return value.</li>
 </ul>
 
+<br>	
 ___ SPAWN SNAILS()___ <br>
 void spawn_ghosts(uint16_t n)
 <ul>
@@ -110,6 +111,7 @@ void spawn_ghosts(uint16_t n)
   <li>RETURN: No return value.</li>
 </ul>
 
+<br>	
 ___ SPAWN GHOSTS() ___ <br>
 void spawn_ghosts(uint16_t n, coordinates ghost_pos[])
 <ul>
@@ -121,6 +123,7 @@ void spawn_ghosts(uint16_t n, coordinates ghost_pos[])
   <li>RETURN: No return value</li>
 </ul>
 
+<br>	
 ___ INF_BUFFER() ____
 <br>
 char *inf_buffer(char *prompt)
@@ -133,6 +136,7 @@ char *inf_buffer(char *prompt)
 <li> RETURN: Will return dynamically allocated string. It is up to the programmer to free this string in the calling function.</li>
 </ul>
 
+<br>	
 ___ PLAYER_MOVE() ___ <br>
 char player_move(void)
 <ul>
@@ -148,6 +152,7 @@ char player_move(void)
   <li>RETURN: Returns char to inform calling function if player has ran into a ghost, decided to quit or nothing happened.</li>
 </ul>
 
+<br>	
 __ GHOST_MOVE() ___ <br>
 char ghost_move_easy/ghost_move_hard/ghost_move_impossible(uint16_t ghost_num, coordinates ghost_pos[])<br>
 NOTE: 3 different ghost_move functions. One per difficulty level.
@@ -166,6 +171,7 @@ NOTE: 3 different ghost_move functions. One per difficulty level.
   <li>RETURN: Returns char letting calling function know if player has been eaten or not.</li>
 </ul>
 
+<br>	
 ___ IF_ERROR() ___
 <br>
 void if_error(int16_t error_num)
@@ -182,7 +188,7 @@ void if_error(int16_t error_num)
   <li> RETURN: No return value. (Exits program before returning.)</li>
 </ul>
 
-
+<br>
 ___ START_SCREEN() ___ <br>
 void start_screen(void)
 <ul>
@@ -195,7 +201,7 @@ void start_screen(void)
   <li>RETURN: No return value.</li>
 </ul>
 
-
+<br>
 ___ COUNTDOWN() ___ <br>
 void countdown(uint16_t level)
 <ul>
@@ -206,7 +212,7 @@ void countdown(uint16_t level)
   <li>RETURN: No return value.</li>
 </ul>
 
-	
+<br>	
 ___ PRINT_ASCII_ART() ___ <br>
 void print_ascii_art(char c)
 <ul>
@@ -217,7 +223,7 @@ void print_ascii_art(char c)
   <li>RETURN: No return value.</li>
 </ul>
 
-	
+<br>	
 ___ CHOOSE_DIFFICULTY() ___<br>
 char *choose_difficulty(void)
 <ul>
@@ -229,7 +235,7 @@ char *choose_difficulty(void)
   <li>RETURN: Returns dynamically allocated string. Must be freed in calling function.</li>
 </ul>
 
-	
+<br>	
 ___ DISPLAY_HIGHEST_SCORE() ___
 uint16_t display_highest_scores(char *difficulty)
 <ul>
@@ -244,7 +250,7 @@ uint16_t display_highest_scores(char *difficulty)
   <li>RETURN: Returns unsigned integer of the all time highest score.</li>
 </ul>
  
-	
+<br>	
 ___ RECORD_NEW_SCORE() ___  
 void record_new_score(char *difficulty, uint16_t score)
 <ul>
