@@ -35,11 +35,20 @@ BLOCKS: '##' <br>
 
 <h3>GAMEBOARD:</h3>
                          	
-<picture>
-  <source media="(prefers-color-scheme: dark)" srcset="https://drive.google.com/drive/u/1/recent">
-  <source media="(prefers-color-scheme: light)" srcset="https://drive.google.com/drive/u/1/recent">
-  <img alt="Gameboard" src="https://drive.google.com/drive/u/1/recent">
-</picture>
+
+             ~~~ SNAIL GAME ~~~
+                 - Level 3 -
+
+             - - - - - - - - - 
+             G - - - # # - x - 
+             - - - # # - - - - 
+             - @ - - - - # - - 
+             - - - - - - # - - 
+             - - - - - - - - - 
+             - - # # - - - - # 
+             - - @ - - - - - # 
+             - - - G - - - G @              Snails left: 3
+GO!:
 
 <h3>LIST OF FUNCTIONS:</h3>
 
