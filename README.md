@@ -31,7 +31,7 @@ BLOCKS: '##' <br>
 		<li>Each ghost will 50/50 randomly decide whether to move 1 space horizontally towards player or 1 space vertically towards player.</li>
 	<li>This means that unless blocked by a block or snail, each ghost will move 1 space towards player on every turn.</li>
 	<h6>Impossible Mode:</h6><li>Each ghost will move both horizontally and vertically towards player if possible (which means they can move diagonally!...in addition to always moving towards the player on each turn.)</li>
-	<h6>Hint: Ghosts can not move through blocks or snails. This mean they can get stuck behind blocks or snails depending on their orientation in relation to the player. Use this to your advantage!</h6>
+	<h6>Hint: Ghosts can not move through blocks or snails (in any mode). This mean they can get stuck behind blocks or snails depending on their orientation in relation to the player. Use this to your advantage!</h6>
 
 <h3>GAMEBOARD:</h3>
                          	~~~ SNAIL EATER ~~~
@@ -59,7 +59,7 @@ void reset_board(void)
 <ul>
   <li> PARAMETERS: No input
   <ol>
-	<li> Uses nested loop to go through each space in the board[][] char 2D array, setting each char to '-' (using the macro BLANK)</li>
+	<li> Uses nested loop to go through each space in the board[][] char 2D array, setting each char to '-' (using the macro BLANK).</li>
   </ol>
   <li> RETURN: No return value.
 </ul>
@@ -69,8 +69,9 @@ void print_board(uint16_t level)
 <ul>
   <li>- PARAMETERS: takes integer as input to display the current level at the top of the screen</li>
   <ol>
-  <li> Uses nested loop to print each char in the 2D char array baord[][], using the macros HEIGHT and WIDTH to easily be able to change the board size.</li>
+  	<li> Uses nested loop to print each char in the 2D char array baord[][], using the macros HEIGHT and WIDTH to easily be able to change the board size.</li>
   </ol>
+  <li> RETURN: No return value.</li>
 </ul>
 
 
