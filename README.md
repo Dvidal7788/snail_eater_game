@@ -48,7 +48,8 @@ BLOCKS: '##' <br>
              - - # # - - - - # 
              - - @ - - - - - # 
              - - - G - - - G @              Snails left: 3
-GO!:
+GO!:![Snail Game Screenshot](https://user-images.githubusercontent.com/91298183/216680057-b206ffc9-1971-479a-914b-ddcf78848bad.png)
+
 
 
 
