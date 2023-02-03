@@ -212,20 +212,39 @@ void print_ascii_art(char c)
   <li>RETURN:</li>
 </ul>
 
-
+___ CHOOSE_DIFFICULTY() ___<br>
+char *choose_difficulty(void)
 <ul>
-  <li>PARAMETERS: </li>
+  <li>PARAMETERS: No inputs.</li>
   <ol>
-    <li></li>
+    <li>Uses inf_buffer() to prompt user to enter difficulty level.</li>
+    <li>Keeps looping until user types either 'easy', 'hard', or 'impossible', which is then returned.</li>
   </ol>
-  <li>RETURN:</li>
+  <li>RETURN: Returns dynamically allocated string. Must be freed in calling function.</li>
+</ul>
+
+___ DISPLAY_HIGHEST_SCORE() ___
+uint16_t display_highest_scores(char *difficulty)
+<ul>
+  <li>PARAMETERS: Takes string as input to determine which csv file to read from.</li>
+  <ol>
+    <li>Each difficulty level has its own csv file keeping track of the scores.</li>
+    <li>Uses system() to execute bash commands to pipeline the output of cat for the correct scores csv into the bash sort program. Then pipelines the output of sort into a sorted csv file.</li>
+    <li>The sorted csv file is now opened in read mode, reading each score entry until the second place score is found. This way we can keep track of all the people who have tied for first place, if there are ties, as opposed to simply reading the top entry. These entries are kept track of in an array of strings.</li>
+    <li>Either the top scorer or the people who have tied for the top score are displayed for the player to see.</li>
+    <li>An integer of the top score is returned to the calling function, to let the player know if they have beaten or tied the top score.</li>
+  </ol>
+  <li>RETURN: Returns unsigned integer of the all time highest score.</li>
 </ul>
   
---- CHOOSE_DIFFICULTY() ---
+___ RECORD_NEW_SCORE() ___  
+void record_new_score(char *difficulty, uint16_t score)
 <ul>
-  <li>PARAMETERS: </li>
-  <ol>
-    <li></li>
-  </ol>
-  <li>RETURN:</li>
+  <li>PARAMETERS: Takes string of difficulty level as well as unisgned integer of the players score as input.</li>
+  <li>Asks player if they wish to record their score. Keeps looping until either 'yes' or 'no' is given as an answer.</li>
+  <li>Asks for player's name, then asks if the name they typed is correct. Keeps looking until either 'yes' or 'no' is given. If 'no' is given, it will loop around and ask for their name again.</li>
+  <li>Opens correct csv file (in append mode) based on difficulty level given as input.</li>
+  <li>A timestamp is created.</li>
+  <li>Score (given as input to function), name and timestamp are appended to csv file.</li>
+  <li>RETURN: No return value.</li>
 </ul>
