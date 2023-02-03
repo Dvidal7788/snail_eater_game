@@ -63,6 +63,8 @@ void reset_board(void)
   </ol>
   <li> RETURN: No return value.
 </ul>
+	
+	
 ___ PRINT_BOARD() ___
 <br>
 void print_board(uint16_t level)
