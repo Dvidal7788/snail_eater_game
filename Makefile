@@ -35,7 +35,7 @@ dist:
 	@echo $(TAR).tgz created successfully :\)
 
 .PHONY: run
-run:
+play:
 	@./$(BIN)
 
 

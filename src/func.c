@@ -760,6 +760,7 @@ void print_ascii_art(char c)
     return;
 }
 
+//      ---- CHOOSE_DIFFICULTY() ----
 char *choose_difficulty(void)
 {
     while (true) {
@@ -776,6 +777,7 @@ char *choose_difficulty(void)
     }
 }
 
+//      ---- DISPLAY_HIGHEST_SCORE() ----
 uint16_t display_highest_scores(char *difficulty)
 {
     uint16_t all_time = 0;
@@ -922,6 +924,8 @@ uint16_t display_highest_scores(char *difficulty)
     return all_time;
 }
 
+
+//      ---- RECORD_NEW_SCORE() ----
 void record_new_score(char *difficulty, uint16_t score)
 {
     // Does user want to record score
