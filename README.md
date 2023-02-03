@@ -29,7 +29,9 @@ BLOCKS: '##' <br>
 		<li>Each ghost will 33/33/33 randomly decide whether to move 1 space horizontally towards player, 1 space vertically towards player or not move at all.</li>
 	<h6>Hard Mode:</h6>
 		<li>Each ghost will 50/50 randomly decide whether to move 1 space horizontally towards player or 1 space vertically towards player.</li>
-	<h6>Impossible Mode:</h6><li>Each ghost will move both horizontally and vertically towards player if possible (which means they can move diagonally!)</li>
+	<li>This means that unless blocked by a block or snail, each ghost will move 1 space towards player on every turn.</li>
+	<h6>Impossible Mode:</h6><li>Each ghost will move both horizontally and vertically towards player if possible (which means they can move diagonally!...in addition to always moving towards the player on each turn.)</li>
+	<h6>Ghosts can not move through blocks or snails or wrap around the border, so they can get stuck depending on their orientation in relation to the player. Use this to your advantage!</h6>
 
 <h3>GAMEBOARD:</h3>
                          	~~~ SNAIL EATER ~~~
