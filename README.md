@@ -36,7 +36,8 @@ BLOCKS: '##' <br>
 <h3>GAMEBOARD:</h3>
                          	~~~ SNAIL EATER ~~~
 
-               	- Level 1 -
+               	~~~ SNAIL EATER ~~~
+		- Level 1 -
 
 
             	- - - - - # # - @
