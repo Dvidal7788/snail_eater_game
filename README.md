@@ -1,12 +1,19 @@
 # snail_eater_game_python
 ASCII-based, Pacman style game. Written in C.
+<h3>How to run program</h3>
+<ul>
+<li>Downloaded the repository from https://github.com/Dvidal7788/snail_eater_game.</li>
+<li>Use your terminal to cd into the 'snail_eater_game' directory.</li>
+<li>Type 'make' in your terminal. This will compile the program in the correct format for your system.</li>
+<li>Type 'make play' or './bin' to run the program</li>
 
+
+
+<h3>Basic Gameplay:</h3>
 PLAYER: 'x' <br>
 SNAILS: '@' <br>
 GHOSTS: 'G' <br>
 BLOCKS: '##' <br>
-
-<h3>Basic Gameplay:</h3>
 <ol>
 <li>Player is 'x'. <br> </li>
 <li>Use w,s,a,d to move up, down, left, right respectively. <br></li>
