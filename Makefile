@@ -31,6 +31,7 @@ $(BIN):$(OBJS)
 
 
 dist:
+	rm -f *.tgz *.tar.gz
 	tar -czvf $(TAR).tgz *
 	@echo $(TAR).tgz created successfully :\)
 
