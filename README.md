@@ -1,8 +1,6 @@
 # snail_eater_game
 ASCII-based, Pacman style game. Written in C.
 <h3>How to run program</h3>
-_How to run program
-
 <ul>
 	<li>Download the repository from https://github.com/Dvidal7788/snail_eater_game.</li>
 	<li>Use your terminal to cd into the 'snail_eater_game' directory.</li>
